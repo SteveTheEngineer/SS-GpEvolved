@@ -14,12 +14,12 @@ public class GPEPlayer {
     public GPEPlayer(OfflinePlayer p) {
         uuid = p.getUniqueId();
 
-        head = new BodyPart(75, (t) -> 5 * t.getLevel(), true);
-        body = new BodyPart(150, (t) -> 15 * t.getLevel(), true);
-        rightArm = new BodyPart(100, (t) -> 10 * t.getLevel(), true);
-        leftArm = new BodyPart(100, (t) -> 10 * t.getLevel(), true);
-        rightLeg = new BodyPart(125, (t) -> 20 * t.getLevel(), true);
-        leftLeg = new BodyPart(125, (t) -> 20 * t.getLevel(), true);
+        head = new BodyPart(75, 5, (t) -> 5 * t.getLevel(), true);
+        body = new BodyPart(150, 5, (t) -> 15 * t.getLevel(), true);
+        rightArm = new BodyPart(100, 5, (t) -> 10 * t.getLevel(), true);
+        leftArm = new BodyPart(100, 5, (t) -> 10 * t.getLevel(), true);
+        rightLeg = new BodyPart(125, 5, (t) -> 20 * t.getLevel(), true);
+        leftLeg = new BodyPart(125, 5, (t) -> 20 * t.getLevel(), true);
     }
 
     public OfflinePlayer getOfflinePlayer() {
