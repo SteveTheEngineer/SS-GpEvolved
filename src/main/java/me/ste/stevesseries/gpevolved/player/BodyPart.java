@@ -1,7 +1,6 @@
-package me.ste.stevesseries.gpevolved;
+package me.ste.stevesseries.gpevolved.player;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class BodyPart {
     private int durability;

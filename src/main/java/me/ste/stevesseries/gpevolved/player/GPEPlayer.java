@@ -1,4 +1,4 @@
-package me.ste.stevesseries.gpevolved;
+package me.ste.stevesseries.gpevolved.player;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
