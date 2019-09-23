@@ -9,8 +9,9 @@ public class BodyPart {
     private int level;
     private Function<BodyPart, Integer> maxDurabilityPerLevel;
     private boolean levelingEnabled;
+    private int maxLevel;
 
-    public BodyPart(int durability, int maxDurability, int level, Function<BodyPart, Integer> maxDurabilityPerLevel, boolean levelingEnabled) {
+    public BodyPart(int durability, int maxDurability, int level, int maxLevel, Function<BodyPart, Integer> maxDurabilityPerLevel, boolean levelingEnabled) {
         this.durability = Math.min(durability, maxDurability);
         this.maxDurability = maxDurability;
         this.level = levelingEnabled ? level : -1;
@@ -18,15 +19,15 @@ public class BodyPart {
         this.levelingEnabled = levelingEnabled;
     }
 
-    public BodyPart(int maxDurability, Function<BodyPart, Integer> maxDurabilityPerLevel, boolean levelingEnabled) {
-        this(maxDurability, maxDurability, 0, maxDurabilityPerLevel, levelingEnabled);
+    public BodyPart(int maxDurability, int maxLevel, Function<BodyPart, Integer> maxDurabilityPerLevel, boolean levelingEnabled) {
+        this(maxDurability, maxDurability, 0, maxLevel, maxDurabilityPerLevel, levelingEnabled);
     }
 
     public int getDurability() {
         return durability;
     }
     public void setDurability(int durability) {
-        this.durability = durability;
+        this.durability = Math.max(0, Math.min(durability, getRealMaxDurability()));
     }
     public int getMaxDurability() {
         return maxDurability;
@@ -35,18 +36,32 @@ public class BodyPart {
         return maxDurability + getLevelMaxDurability();
     }
     public void setMaxDurability(int maxDurability) {
-        this.maxDurability = maxDurability;
+        this.maxDurability = Math.max(0, maxDurability);
+        if(durability > maxDurability) durability = maxDurability;
     }
     public int getLevel() {
         return level;
     }
     public void setLevel(int level) {
         if(!isLevelingEnabled()) return;
-        this.level = level;
+        this.level = Math.min(level, maxLevel);
+        durability = Math.min(durability, getRealMaxDurability());
     }
-    public void levelUp() {
-        if(!isLevelingEnabled()) return;
+    public boolean levelUp() {
+        if(!isLevelingEnabled()) return false;
+        if(level >= maxLevel) return false;
         level++;
+        durability += getMaxDurabilityPerLevel();
+        return true;
+    }
+    public boolean isBroken() {
+        return durability <= 0;
+    }
+    public boolean isDamaged() {
+        return durability < maxDurability;
+    }
+    public void fix() {
+        durability = getRealMaxDurability();
     }
     public int getLevelMaxDurability() {
         return getMaxDurabilityPerLevel() * level;
@@ -73,5 +88,13 @@ public class BodyPart {
             }
             this.levelingEnabled = levelingEnabled;
         }
+    }
+
+    public int getMaxLevel() {
+        return maxLevel;
+    }
+
+    public void setMaxLevel(int maxLevel) {
+        this.maxLevel = maxLevel;
     }
 }
