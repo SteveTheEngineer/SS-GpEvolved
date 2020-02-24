@@ -45,7 +45,7 @@ public class SlimefunIntegration {
             if(e.getPlayer().isSneaking()) {
                 e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&oYour body temperature is: " + GPEPlayer.getGPEPlayer(e.getPlayer()).getTemperature()));
             } else {
-
+                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&oTemperature at your location is: " + Temperature.getTemperatureAt(e.getPlayer().getLocation())));
             }
         });
         thermometer.register(addon);
