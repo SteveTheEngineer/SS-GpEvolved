@@ -4,6 +4,8 @@ import me.ste.stevesseries.gpevolved.player.GPEPlayer;
 import org.bukkit.block.Biome;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class GpEvolved extends JavaPlugin {
     public static GpEvolved INSTANCE;
     private Settings settings;
@@ -15,6 +17,9 @@ public final class GpEvolved extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        if(!new File(getDataFolder(), "config.yml").isFile()) {
+            saveDefaultConfig();
+        }
         settings = new Settings(this);
         if(getServer().getPluginManager().isPluginEnabled("Slimefun")) {
             this.slimefunIntegration = new SlimefunIntegration(this);
