@@ -3,7 +3,7 @@ version: @version@
 main: me.ste.stevesseries.gpevolved.GpEvolved
 api-version: "1.13"
 prefix: SS | GpEvolved
-load: STARTUP
 depend: [SS-Core-Base, SS-Core-PoseLib]
+softdepend: [Slimefun]
 authors: [STEngineer]
 description: Steve's Series | Gameplay Evolved

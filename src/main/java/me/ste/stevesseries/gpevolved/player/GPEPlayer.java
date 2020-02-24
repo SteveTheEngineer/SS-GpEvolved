@@ -1,17 +1,27 @@
 package me.ste.stevesseries.gpevolved.player;
 
+import me.ste.stevesseries.gpevolved.GpEvolved;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 public class GPEPlayer {
+    public static Map<UUID, GPEPlayer> players = new HashMap<>();
+
+    public static GPEPlayer getGPEPlayer(Player p) {
+        return players.get(p.getUniqueId());
+    }
+
     private UUID uuid;
     private BodyPart head, body, leftArm, rightArm, leftLeg, rightLeg;
+    private double temperature;
 
-    public GPEPlayer(OfflinePlayer p) {
+    public GPEPlayer(Player p) {
         uuid = p.getUniqueId();
 
         head = new BodyPart(75, 5, (t) -> 5 * t.getLevel(), true);
@@ -20,10 +30,8 @@ public class GPEPlayer {
         leftArm = new BodyPart(100, 5, (t) -> 10 * t.getLevel(), true);
         rightLeg = new BodyPart(125, 5, (t) -> 20 * t.getLevel(), true);
         leftLeg = new BodyPart(125, 5, (t) -> 20 * t.getLevel(), true);
-    }
 
-    public OfflinePlayer getOfflinePlayer() {
-        return Bukkit.getOfflinePlayer(uuid);
+        temperature = GpEvolved.INSTANCE.getSettings().getPlayerTemperature();
     }
 
     public BodyPart getHead() {
@@ -44,11 +52,15 @@ public class GPEPlayer {
     public BodyPart getRightLeg() {
         return rightLeg;
     }
-    public boolean isOnline() {
-        return getOfflinePlayer().isOnline();
+    public double getTemperature() {
+        return temperature;
     }
 
-    public Optional<Player> getPlayer() {
-        return Optional.ofNullable(getOfflinePlayer().getPlayer());
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
+
+    public Player getPlayer() {
+        return getPlayer();
     }
 }

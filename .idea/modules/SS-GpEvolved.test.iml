@@ -38,6 +38,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="Gradle: org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.TheBusyBiscuit:Slimefun4:05de09c" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Gradle: net.md-5:bungeecord-chat:1.13-SNAPSHOT" level="project" />
