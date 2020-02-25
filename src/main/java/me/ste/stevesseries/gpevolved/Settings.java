@@ -10,7 +10,6 @@ import java.util.Map;
 public class Settings {
     private GpEvolved plugin;
     private Map<Biome, Double> biomeTemperatures = new HashMap<>();
-    private double playerTemperature = 0;
 
     public Settings(GpEvolved plugin) {
         this.plugin = plugin;
@@ -18,10 +17,6 @@ public class Settings {
 
     public double getBiomeTemperature(Biome biome) {
         return biomeTemperatures.get(biome);
-    }
-
-    public double getPlayerTemperature() {
-        return playerTemperature;
     }
 
     public void load() {
@@ -46,7 +41,5 @@ public class Settings {
                 plugin.getLogger().warning("Cannot find temperature for biome " + biome.name() + ", using default value instead (" + finalTBiomeDefault + "). Please check your configuration");
             }
         });
-
-        playerTemperature = temperature.getDouble("player");
     }
 }

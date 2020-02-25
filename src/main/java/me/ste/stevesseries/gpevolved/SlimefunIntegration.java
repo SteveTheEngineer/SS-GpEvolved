@@ -42,11 +42,7 @@ public class SlimefunIntegration {
                 new ItemStack(Material.IRON_INGOT), new ItemStack(Material.REDSTONE), new ItemStack(Material.IRON_INGOT)
         });
         thermometer.addItemHandler((ItemUseHandler) e -> {
-            if(e.getPlayer().isSneaking()) {
-                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&oYour body temperature is: " + GPEPlayer.getGPEPlayer(e.getPlayer()).getTemperature()));
-            } else {
-                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&oTemperature at your location is: " + Temperature.getTemperatureAt(e.getPlayer().getLocation())));
-            }
+            e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&oTemperature at your location is: " + Temperature.getTemperatureAt(e.getPlayer().getLocation())));
         });
         thermometer.register(addon);
     }

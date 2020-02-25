@@ -1,5 +1,4 @@
 temperature:
-  player: 30
   biomes:
     default: 20
     BADLANDS: 38
@@ -77,3 +76,9 @@ temperature:
     WOODED_BADLANDS_PLATEAU: 42
     WOODED_HILLS: 8
     WODED_MOUNTAINS: 6
+  effects:
+    - temprature: 40+ # Number range, the temperature required for effect to apply
+      time: 200 # Time you need to spend to be affected by the effect
+      actions:
+        - type: disease
+          name: gpevolved:overtemperature

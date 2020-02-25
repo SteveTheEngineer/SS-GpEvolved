@@ -19,7 +19,6 @@ public class GPEPlayer {
 
     private UUID uuid;
     private BodyPart head, body, leftArm, rightArm, leftLeg, rightLeg;
-    private double temperature;
 
     public GPEPlayer(Player p) {
         uuid = p.getUniqueId();
@@ -30,8 +29,6 @@ public class GPEPlayer {
         leftArm = new BodyPart(100, 5, (t) -> 10 * t.getLevel(), true);
         rightLeg = new BodyPart(125, 5, (t) -> 20 * t.getLevel(), true);
         leftLeg = new BodyPart(125, 5, (t) -> 20 * t.getLevel(), true);
-
-        temperature = GpEvolved.INSTANCE.getSettings().getPlayerTemperature();
     }
 
     public BodyPart getHead() {
@@ -51,13 +48,6 @@ public class GPEPlayer {
     }
     public BodyPart getRightLeg() {
         return rightLeg;
-    }
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(int temperature) {
-        this.temperature = temperature;
     }
 
     public Player getPlayer() {
