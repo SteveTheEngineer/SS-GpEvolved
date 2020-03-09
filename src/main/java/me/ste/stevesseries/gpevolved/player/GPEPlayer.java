@@ -1,16 +1,19 @@
 package me.ste.stevesseries.gpevolved.player;
 
+import me.ste.stevesseries.corebase.registry.Registry;
+import me.ste.stevesseries.corebase.registry.RegistryManager;
 import me.ste.stevesseries.gpevolved.GpEvolved;
+import me.ste.stevesseries.gpevolved.player.disease.Disease;
+import me.ste.stevesseries.gpevolved.player.disease.ExistingDisease;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class GPEPlayer {
+    private static final Registry DISEASE_REGISTRY = RegistryManager.getInstance().getRegistryExceptional(new NamespacedKey(GpEvolved.getPlugin(GpEvolved.class), "disease"));
+
     public static Map<UUID, GPEPlayer> players = new HashMap<>();
 
     public static GPEPlayer getGPEPlayer(Player p) {
@@ -19,6 +22,7 @@ public class GPEPlayer {
 
     private UUID uuid;
     private BodyPart head, body, leftArm, rightArm, leftLeg, rightLeg;
+    private Set<ExistingDisease> diseases;
 
     public GPEPlayer(Player p) {
         uuid = p.getUniqueId();
@@ -50,7 +54,34 @@ public class GPEPlayer {
         return rightLeg;
     }
 
+    public Optional<ExistingDisease> getDisease(NamespacedKey disease) {
+        for(ExistingDisease existingDisease : diseases) {
+            if(DISEASE_REGISTRY.getEntry(disease).get().equals(existingDisease.getDisease())) {
+                return Optional.of(existingDisease);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public boolean disease(NamespacedKey disease, long duration) {
+        Optional<ExistingDisease> diseaseOptional = getDisease(disease);
+        if(diseaseOptional.isPresent()) {
+            ExistingDisease existingDisease = diseaseOptional.get();
+            existingDisease.setDuration(existingDisease.getDuration() + duration);
+            return true;
+        } else {
+            if(duration >= 0) {
+                diseases.add(new ExistingDisease((Disease) DISEASE_REGISTRY.getEntry(disease).get(), duration, 0));
+            }
+            return false;
+        }
+    }
+
+    public void undisease(NamespacedKey disease) {
+        diseases.removeIf(existingDisease -> DISEASE_REGISTRY.getEntry(disease).get().equals(existingDisease.getDisease()));
+    }
+
     public Player getPlayer() {
-        return getPlayer();
+        return Bukkit.getPlayer(uuid);
     }
 }

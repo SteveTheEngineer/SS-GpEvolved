@@ -1,7 +1,12 @@
 package me.ste.stevesseries.gpevolved;
 
+import me.ste.stevesseries.corebase.registry.Registry;
+import me.ste.stevesseries.corebase.registry.RegistryManager;
+import me.ste.stevesseries.corebase.registry.rule.ClassRule;
+import me.ste.stevesseries.corebase.registry.rule.NotNullRule;
 import me.ste.stevesseries.gpevolved.player.GPEPlayer;
-import org.bukkit.block.Biome;
+import me.ste.stevesseries.gpevolved.player.disease.Disease;
+import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -17,6 +22,9 @@ public final class GpEvolved extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        Registry diseaseRegistry = RegistryManager.getInstance().addRegistry(new NamespacedKey(this, "disease"));
+        diseaseRegistry.addRules(new NotNullRule(), new ClassRule(Disease.class));
+
         if(!new File(getDataFolder(), "config.yml").isFile()) {
             saveDefaultConfig();
         }

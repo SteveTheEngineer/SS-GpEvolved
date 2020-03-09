@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SS-GpEvolved.iml" filepath="$PROJECT_DIR$/SS-GpEvolved.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SS-GpEvolved.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SS-GpEvolved.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SS-GpEvolved.test.iml" filepath="$PROJECT_DIR$/.idea/modules/SS-GpEvolved.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ss-gpevolved.iml" filepath="$PROJECT_DIR$/.idea/modules/ss-gpevolved.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ss-gpevolved.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ss-gpevolved.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ss-gpevolved.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ss-gpevolved.test.iml" />
     </modules>
   </component>
 </project>
