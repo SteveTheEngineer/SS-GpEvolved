@@ -5,10 +5,10 @@ Steve's Series | Gameplay Evolved, a plugin for bukkit\
 # Finished features
 None
 # Features to be added/in progress
-* Player bodypart leveling and durability mechanics - 45%
-* Disease mechanics - 10%
+* Player body part ~leveling and ~durability mechanics
+* Disease mechanics
 * Combat mechanics
-* World interaction mechanics - 30%
+* World interaction mechanics
 * Fatigue mechanics
 * Blood mechanics
 * New health mechanics
